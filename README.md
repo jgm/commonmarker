@@ -2,7 +2,7 @@ commonmarker
 ============
 
 **Note:  gjtorikian has taken over this library. The main
-repository is now gjtorikian/commonmarker.**
+repository is now [gjtorikian/commonmarker](https://github.com/gjtorikian/commonmarker/).**
 
 
 Ruby wrapper for [libcmark](https://github.com/jgm/CommonMark),
