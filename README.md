@@ -1,6 +1,10 @@
 commonmarker
 ============
 
+**Note:  gjtorikian has taken over this library. The main
+repository is now gjtorikian/commonmarker.**
+
+
 Ruby wrapper for [libcmark](https://github.com/jgm/CommonMark),
 the reference parser for CommonMark.  The gem assumes you have
 installed libcmark.  It would be nice to have the gem build the
