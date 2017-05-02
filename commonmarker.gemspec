@@ -1,7 +1,10 @@
 # encoding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'commonmarker/version'
 Gem::Specification.new do |s|
   s.name = 'commonmarker'
-  s.version = '0.1'
+  s.version = CommonMarker::VERSION
   s.summary = "CommonMark parser and renderer"
   s.description = "A fast, safe, extensible parser for CommonMark"
   s.date = '2014-11-25'
@@ -11,27 +14,19 @@ Gem::Specification.new do |s|
   s.license = 'BSD3'
   s.required_ruby_version = '>= 1.9.2'
   # = MANIFEST =
-  s.files = %w[
-    LICENSE
-    Gemfile
-    README.md
-    Rakefile
-    commonmarker.gemspec
-    bin/commonmarker
-    lib/commonmarker.rb
-    test/benchmark.rb
-    test/test_basics.rb
-    test/test_pathological_inputs.rb
-  ]
+  s.files         = %w(LICENSE README.md Rakefile commonmarker.gemspec Gemfile bin/commonmarker)
+  s.files        += Dir.glob('lib/**/*.rb')
+  s.files        += Dir.glob('ext/**/*')
+  s.test_files    = Dir.glob('test/**/*')
+  s.extensions    = ['ext/commonmarker/extconf.rb']
   # = MANIFEST =
   s.test_files = s.files.grep(%r{^test/})
   s.extra_rdoc_files = ["LICENSE"]
   s.executables = ["commonmarker"]
-  s.require_paths = ["lib"]
+  s.require_paths = %w(lib ext)
 
-  s.add_runtime_dependency "ffi", "~> 1.9.0"
-
-  s.add_development_dependency "rake-compiler", "~> 0.8.3"
-  s.add_development_dependency "bundler", "~> 1.7.7"
+  s.add_dependency   'ruby-enum', '~> 0.4'
+  s.add_development_dependency "rake-compiler", "~> 0.9"
+  s.add_development_dependency "bundler", "~> 1.9"
   s.add_development_dependency "json", "~> 1.8.1"
 end

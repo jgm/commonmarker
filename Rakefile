@@ -1,11 +1,17 @@
 require 'date'
 require 'rake/clean'
+require 'rake/extensiontask'
 require 'digest/md5'
 
 task :default => [:test]
 
 # Gem Spec
 gem_spec = Gem::Specification.load('commonmarker.gemspec')
+
+# Ruby Extension
+Rake::ExtensionTask.new('commonmarker', gem_spec) do |ext|
+  ext.lib_dir = File.join('lib', 'commonmarker')
+end
 
 # Packaging
 require 'bundler/gem_tasks'
@@ -21,7 +27,7 @@ Rake::TestTask.new('test:unit') do |t|
   t.warning = false
 end
 
-task 'test:unit'
+task 'test:unit' => :compile
 
 desc 'Run unit and conformance tests'
 task :test => %w[test:unit]
